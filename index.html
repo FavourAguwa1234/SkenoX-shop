@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ridax - Effective Bedbug Insecticide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2A6B37',
+                        secondary: '#EAB308',
+                        accent: '#DC2626',
+                        light: '#F0FDF4',
+                        dark: '#14532D'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .hero-slide {
+            background-size: cover;
+            background-position: center;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide-1 {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/bed\ bug.jpeg');
+        }
+        .slide-2 {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/cockroach.jpeg');
+        }
+        .slide-3 {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/radix2.jpg');
+        }
+        .feature-icon {
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        .product-image {
+            transition: transform 0.3s ease;
+        }
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+        .cart-item {
+            transition: all 0.3s ease;
+        }
+        .thank-you-message {
+            display: none;
+        }
+        .slider-dot {
+            transition: all 0.3s ease;
+        }
+        .slider-dot.active {
+            background-color: #EAB308;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body class="bg-green-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-bug text-3xl text-primary mr-2"></i>
+                <span class="text-2xl font-bold text-primary">Radix</span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-primary font-medium">Home</a>
+                <a href="#features" class="text-gray-700 hover:text-primary font-medium">Features</a>
+                <a href="#product" class="text-gray-700 hover:text-primary font-medium">Product</a>
+                <a href="#how-to-order" class="text-gray-700 hover:text-primary font-medium">How to Order</a>
+                <a href="#faq" class="text-gray-700 hover:text-primary font-medium">FAQ</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium">Contact</a>
+                <a href="#cart" class="text-gray-700 hover:text-primary font-medium relative">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="absolute -top-2 -right-3 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center" id="cart-count">0</span>
+                </a>
+            </nav>
+            
+            <div class="md:hidden flex items-center">
+                <a href="#cart" class="text-primary mr-4 relative">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="absolute -top-2 -right-3 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center" id="mobile-cart-count">0</span>
+                </a>
+                <button id="menu-btn" class="text-primary">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pb-4">
+            <a href="#home" class="block py-2 text-gray-700 hover:text-primary">Home</a>
+            <a href="#features" class="block py-2 text-gray-700 hover:text-primary">Features</a>
+            <a href="#product" class="block py-2 text-gray-700 hover:text-primary">Product</a>
+            <a href="#how-to-order" class="block py-2 text-gray-700 hover:text-primary">How to Order</a>
+            <a href="#faq" class="block py-2 text-gray-700 hover:text-primary">FAQ</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-primary">Contact</a>
+            <a href="#cart" class="block py-2 text-gray-700 hover:text-primary">Cart</a>
+        </div>
+    </header>
+
+    <!-- Hero Slider Section -->
+    <section id="home" class="relative h-screen">
+        <!-- Slide 1 -->
+        <div class="hero-slide slide-1 absolute inset-0 flex items-center justify-center text-white opacity-100">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Say Goodbye to Bed Bugs with Ridax</h1>
+                <p class="text-xl md:text-2xl mb-8">Fast, Safe & Effective Solution for Your Home</p>
+                <a href="#product" class="bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center">
+                    Order Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="hero-slide slide-2 absolute inset-0 flex items-center justify-center text-white opacity-0">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Eliminates All Types of Insects</h1>
+                <p class="text-xl md:text-2xl mb-8">Effective against bedbugs, roaches, ants, and more</p>
+                <a href="#product" class="bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center">
+                    Order Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="hero-slide slide-3 absolute inset-0 flex items-center justify-center text-white opacity-0">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Long-lasting Protection</h1>
+                <p class="text-xl md:text-2xl mb-8">Remains effective for up to 6 months after application</p>
+                <a href="#product" class="bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center">
+                    Order Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Slider Controls -->
+        <div class="absolute bottom-8 left-0 right-0 flex justify-center space-x-3">
+            <button class="slider-dot w-3 h-3 rounded-full bg-white opacity-70 active" data-slide="0"></button>
+            <button class="slider-dot w-3 h-3 rounded-full bg-white opacity-70" data-slide="1"></button>
+            <button class="slider-dot w-3 h-3 rounded-full bg-white opacity-70" data-slide="2"></button>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <button id="prev-slide" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="next-slide" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Why Choose Ridax?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center">
+                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full">
+                        <i class="fas fa-bug text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Kills Instantly</h3>
+                    <p class="text-gray-700">Eliminates bed bugs, eggs, nymphs and entire breeding nests on contact</p>
+                </div>
+                
+                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center">
+                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Safe for Home</h3>
+                    <p class="text-gray-700">No toxic smell, safe for children and pets when used as directed</p>
+                </div>
+                
+                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center">
+                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Long-lasting</h3>
+                    <p class="text-gray-700">Remains active for up to 6 months after application</p>
+                </div>
+                
+                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center">
+                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full">
+                        <i class="fas fa-users text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Trusted</h3>
+                    <p class="text-gray-700">Hundreds of satisfied customers across Nigeria</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section id="product" class="py-16 bg-green-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <div class="product-image rounded-lg overflow-hidden shadow-lg">
+                        <img src="img/radix.jpg" 
+                             alt="Ridax Bedbug Insecticide" class="w-full h-auto">
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Ridax Bedbug Killer spary</h2>
+                    <p class="text-lg text-gray-700 mb-4">The perfect home defence specially formulated for bedbug menace in the home.</p>
+                    
+                    <ul class="mb-6 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Gets rid of bedbugs, eggs, nymphs and the entire bedbug breeding nest</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Kills tough resistant strains of bedbug and dries up their eggs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Long-lasting protection - remains active for 6 months after application</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Leaves no toxic smell and safe for a healthy night rest</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="flex items-center mb-6">
+                        <span class="text-3xl font-bold text-accent">₦9,000</span>
+                        <span class="ml-4 text-gray-600">Negotiable</span>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+                        <div class="flex items-center">
+                            <label for="quantity" class="mr-2 font-medium">Quantity:</label>
+                            <input type="number" id="quantity" min="1" value="1" class="w-16 border rounded-lg py-1 px-2">
+                        </div>
+                        <button id="add-to-cart" class="bg-primary hover:bg-dark text-white font-bold py-2 px-6 rounded-full inline-flex items-center">
+                            Add to Cart <i class="fas fa-shopping-cart ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Order Section -->
+    <section id="how-to-order" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">How to Order</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-light p-6 rounded-lg shadow-md text-center relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</div>
+                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Add to Cart</h3>
+                    <p class="text-gray-700">Select your desired quantity and add to cart</p>
+                </div>
+                
+                <div class="bg-light p-6 rounded-lg shadow-md text-center relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</div>
+                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Provide Details</h3>
+                    <p class="text-gray-700">Fill in your name, address, and phone number</p>
+                </div>
+                
+                <div class="bg-light p-6 rounded-lg shadow-md text-center relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</div>
+                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-check-circle text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Confirm Order</h3>
+                    <p class="text-gray-700">Our team will confirm your order details</p>
+                </div>
+                
+                <div class="bg-light p-6 rounded-lg shadow-md text-center relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">4</div>
+                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center">
+                        <i class="fas fa-truck text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Receive Delivery</h3>
+                    <p class="text-gray-700">Get your product delivered and pay at your doorstep</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#cart" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-full inline-flex items-center">
+                    <i class="fas fa-shopping-cart mr-2"></i> Proceed to Checkout
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" class="py-16 bg-green-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Your Cart</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <div id="cart-items" class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <p class="text-center text-gray-600" id="empty-cart-message">Your cart is empty</p>
+                    <!-- Cart items will be added here dynamically -->
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4">Order Information</h3>
+                    
+                    <form id="order-form" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Full Name *</label>
+                                <input type="text" id="name" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-gray-700 mb-2">Phone Number *</label>
+                                <input type="tel" id="phone" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="address" class="block text-gray-700 mb-2">Delivery Address *</label>
+                            <textarea id="address" rows="3" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="notes" class="block text-gray-700 mb-2">Additional Notes (Optional)</label>
+                            <textarea id="notes" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input type="checkbox" id="payment-method" required class="mr-2">
+                            <label for="payment-method" class="text-gray-700">Payment on Delivery</label>
+                        </div>
+                        
+                        <button type="submit" class="bg-primary hover:bg-dark text-white font-bold py-3 px-6 rounded-full w-full">
+                            Place Order
+                        </button>
+                    </form>
+                    
+                    <div id="thank-you-message" class="thank-you-message mt-6 bg-light p-6 rounded-lg text-center">
+                        <i class="fas fa-check-circle text-4xl text-primary mb-4"></i>
+                        <h3 class="text-2xl font-semibold mb-2">Thank You for Your Order!</h3>
+                        <p class="text-gray-700">We've received your order and will contact you shortly to confirm details.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Frequently Asked Questions</h2>
+            
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center">
+                        Is Ridax safe for children and pets?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="p-5 border-t">
+                            <p class="text-gray-700">Yes, Ridax is safe when used as directed. It leaves no toxic smell and is safe for a healthy night's rest after application.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center">
+                        How fast does it work?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="p-5 border-t">
+                            <p class="text-gray-700">You'll notice results within hours of spraying. The formulation kills bedbugs on contact and continues to work for up to 6 months.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center">
+                        Do I need to pay online?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="p-5 border-t">
+                            <p class="text-gray-700">No! We offer Payment on Delivery. Simply pay when your order arrives at your doorstep.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center">
+                        Can I buy more than one?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="p-5 border-t">
+                            <p class="text-gray-700">Yes, you can order multiple bottles. Simply let us know the quantity you need when placing your order.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center">
+                        Which areas do you deliver to?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="p-5 border-t">
+                            <p class="text-gray-700">We deliver across  Abuja .</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Contact Us</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <div class="bg-light p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Phone</h4>
+                                    <p class="text-gray-700">(+234) 803 948 1940</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">WhatsApp</h4>
+                                    <p class="text-gray-700">080 3948 19 40</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p class="text-gray-700">Chukxila@yahoo.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Location</h4>
+                                    <p class="text-gray-700">6 ime James Street life camp,Abuja</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-light p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-6">Send us a Message</h3>
+                        
+                        <form class="space-y-4">
+                            <div>
+                                <label for="contact-name" class="block text-gray-700 mb-2">Full Name</label>
+                                <input type="text" id="contact-name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            
+                            <div>
+                                <label for="contact-email" class="block text-gray-700 mb-2">Email Address</label>
+                                <input type="email" id="contact-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            
+                            <div>
+                                <label for="contact-message" class="block text-gray-700 mb-2">Message</label>
+                                <textarea id="contact-message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="bg-primary hover:bg-dark text-white font-bold py-3 px-6 rounded-full w-full">
+                                Send Message
+                            </button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <i class="fas fa-bug text-3xl text-secondary mr-2"></i>
+                        <span class="text-2xl font-bold">Radix</span>
+                    </div>
+                    <p class="mt-2 text-green-100">The perfect solution for bedbug problems</p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-green-100">(+234) 803 948 1940</p>
+                    <p class="text-green-100">Chukxila@yahoo.com</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-700 mt-8 pt-8 text-center text-green-200">
+                <p>&copy; 2025 Ridax Bedbug Insecticide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/2348134847886?text=Hello%20SkenoX%2C%20I%20want%20to%20order%20Ridax%20(Bed%20Bug%20Treatment)%20spray" 
+   target="_blank" 
+   style="
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      z-index: 9999;
+   ">
+   <!-- WhatsApp Icon (SVG) -->
+   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+     <path d="M13.601 2.326A7.902 7.902 0 0 0 8 0C3.58 0 0 3.58 0 8c0 1.404.363 2.773 1.05 3.978L.057 16l4.13-1.084A7.96 7.96 0 0 0 8 16c4.42 0 8-3.58 8-8a7.902 7.902 0 0 0-2.399-5.674ZM8 14.5a6.46 6.46 0 0 1-3.356-.92l-.24-.144-2.45.643.655-2.39-.157-.246A6.465 6.465 0 0 1 1.5 8a6.5 6.5 0 1 1 13 0c0 3.584-2.916 6.5-6.5 6.5Zm3.72-4.705c-.204-.102-1.204-.593-1.39-.66-.187-.07-.324-.102-.46.102-.136.204-.528.66-.647.796-.118.136-.24.153-.444.051-.204-.102-.86-.317-1.637-1.01-.605-.54-1.012-1.204-1.131-1.408-.118-.204-.013-.314.09-.415.092-.091.204-.24.306-.36.102-.118.136-.204.204-.34.068-.136.034-.255-.017-.356-.051-.102-.46-1.11-.63-1.52-.166-.398-.335-.344-.46-.35-.118-.007-.255-.007-.392-.007a.755.755 0 0 0-.548.255c-.187.204-.715.699-.715 1.705 0 1.006.732 1.977.834 2.11.102.136 1.44 2.197 3.487 3.084.487.21.867.335 1.163.428.488.156.931.134 1.28.081.391-.058 1.204-.49 1.374-.963.17-.474.17-.88.119-.964-.05-.085-.187-.136-.392-.238Z"/>
+   </svg>
+</a>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                
+                const icon = question.querySelector('i');
+                if (item.classList.contains('active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Hero Slider functionality
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.style.opacity = '0';
+            });
+            
+            // Remove active class from all dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Show the selected slide
+            slides[index].style.opacity = '1';
+            
+            // Activate the corresponding dot
+            dots[index].classList.add('active');
+            
+            currentSlide = index;
+        }
+        
+        // Next slide button
+        document.getElementById('next-slide').addEventListener('click', function() {
+            let nextSlide = currentSlide + 1;
+            if (nextSlide >= slides.length) nextSlide = 0;
+            showSlide(nextSlide);
+        });
+        
+        // Previous slide button
+        document.getElementById('prev-slide').addEventListener('click', function() {
+            let prevSlide = currentSlide - 1;
+            if (prevSlide < 0) prevSlide = slides.length - 1;
+            showSlide(prevSlide);
+        });
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                showSlide(index);
+            });
+        });
+        
+        // Auto-advance slides every 5 seconds
+        setInterval(() => {
+            let nextSlide = currentSlide + 1;
+            if (nextSlide >= slides.length) nextSlide = 0;
+            showSlide(nextSlide);
+        }, 5000);
+        
+        // Cart functionality
+        let cartItems = [];
+        const cartCount = document.getElementById('cart-count');
+        const mobileCartCount = document.getElementById('mobile-cart-count');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const addToCartBtn = document.getElementById('add-to-cart');
+        const quantityInput = document.getElementById('quantity');
+        const orderForm = document.getElementById('order-form');
+        const thankYouMessage = document.getElementById('thank-you-message');
+        
+        function updateCartCount() {
+            const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            mobileCartCount.textContent = totalItems;
+        }
+        
+        function updateCartDisplay() {
+            if (cartItems.length === 0) {
+                emptyCartMessage.style.display = 'block';
+                cartItemsContainer.innerHTML = '';
+                return;
+            }
+            
+            emptyCartMessage.style.display = 'none';
+            
+            let cartHTML = '';
+            let total = 0;
+            
+            cartItems.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                cartHTML += `
+                    <div class="cart-item flex justify-between items-center py-4 border-b">
+                        <div>
+                            <h4 class="font-semibold">Ridax Bedbug Insecticide</h4>
+                            <p class="text-gray-600">₦${item.price.toLocaleString()} x ${item.quantity}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="font-semibold mr-4">₦${itemTotal.toLocaleString()}</span>
+                            <button class="remove-item text-red-500" data-index="${index}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartHTML += `
+                <div class="flex justify-between items-center pt-4">
+                    <h4 class="text-xl font-semibold">Total</h4>
+                    <span class="text-xl font-semibold">₦${total.toLocaleString()}</span>
+                </div>
+            `;
+            
+            cartItemsContainer.innerHTML = cartHTML;
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cartItems.splice(index, 1);
+                    updateCartDisplay();
+                    updateCartCount();
+                });
+            });
+        }
+        
+        addToCartBtn.addEventListener('click', function() {
+            const quantity = parseInt(quantityInput.value);
+            
+            if (isNaN(quantity) || quantity < 1) {
+                alert('Please enter a valid quantity');
+                return;
+            }
+            
+            // Check if product already in cart
+            if (cartItems.length > 0) {
+                cartItems[0].quantity += quantity;
+            } else {
+                cartItems.push({
+                    name: 'Ridax Bedbug Insecticide',
+                    price: 9000,
+                    quantity: quantity
+                });
+            }
+            
+            updateCartDisplay();
+            updateCartCount();
+            
+            // Show confirmation
+            alert(`${quantity} item(s) added to cart!`);
+        });
+        
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (cartItems.length === 0) {
+                alert('Your cart is empty. Please add items to your cart before placing an order.');
+                return;
+            }
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const notes = document.getElementById('notes').value;
+            
+            // Prepare WhatsApp message
+            const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+            const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+            
+            let message = `New Order from Radix Website%0A%0A`;
+            message += `Name: ${name}%0A`;
+            message += `Phone: ${phone}%0A`;
+            message += `Address: ${address}%0A`;
+            message += `Product: Ridax Bedbug Insecticide%0A`;
+            message += `Quantity: ${totalItems}%0A`;
+            message += `Total: ₦${totalPrice.toLocaleString()}%0A`;
+            
+            if (notes) {
+                message += `Notes: ${notes}%0A`;
+            }
+            
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/2348039481940?text=${message}`, '_blank');
+            
+            // Hide form and show thank you message
+            orderForm.style.display = 'none';
+            thankYouMessage.style.display = 'block';
+            
+            // Scroll to thank you message
+            thankYouMessage.scrollIntoView({ behavior: 'smooth' });
+            
+            // Clear cart
+            cartItems = [];
+            updateCartDisplay();
+            updateCartCount();
+            
+            // Reset form
+            orderForm.reset();
+        });
+        
+        // Initialize cart display
+        updateCartDisplay();
+        updateCartCount();
+    </script>
+</body>
+</html>
