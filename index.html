@@ -224,58 +224,83 @@
         </div>
     </section>
 
-    <!-- Product Section -->
-    <section id="product" class="py-16 bg-green-50">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                    <div class="product-image rounded-lg overflow-hidden shadow-lg">
-                        <img src="img/radix.jpg" 
-                             alt="Ridax Bedbug Insecticide" class="w-full h-auto">
-                    </div>
+   <!-- Product Section -->
+<section id="product" class="py-16 bg-green-50">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center">
+            
+            <!-- Product Images Gallery -->
+            <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                <div class="product-image rounded-lg overflow-hidden shadow-lg mb-4">
+                    <img id="main-product-image" 
+                         src="img/radix.jpg" 
+                         alt="Ridax Bedbug Insecticide" 
+                         class="w-full h-auto">
                 </div>
                 
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Ridax Bedbug Killer Spray</h2>
-                    <p class="text-lg text-gray-700 mb-4">The perfect home defence specially formulated for bedbug menace in the home.</p>
+                <!-- Thumbnail Images -->
+                <div class="grid grid-cols-4 gap-4">
+                    <img src="img/radix.jpg" alt="Ridax Spray 1" 
+                         class="cursor-pointer rounded-lg shadow-md hover:opacity-75"
+                         onclick="document.getElementById('main-product-image').src=this.src">
                     
-                    <ul class="mb-6 space-y-2">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Gets rid of bedbugs, eggs, nymphs and the entire bedbug breeding nest</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Kills tough resistant strains of bedbug and dries up their eggs</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Long-lasting protection - remains active for 6 months after application</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                            <span>Leaves no toxic smell and safe for a healthy night rest</span>
-                        </li>
-                    </ul>
+                    <img src="img/radix2.jpg" alt="Ridax Spray 2" 
+                         class="cursor-pointer rounded-lg shadow-md hover:opacity-75"
+                         onclick="document.getElementById('main-product-image').src=this.src">
                     
-                    <div class="flex items-center mb-6">
-                        <span class="text-3xl font-bold text-accent">₦9,000</span>
-                        <span class="ml-4 text-gray-600">Negotiable</span>
+                    <img src="img/3.jpg" alt="Ridax Spray 3" 
+                         class="cursor-pointer rounded-lg shadow-md hover:opacity-75"
+                         onclick="document.getElementById('main-product-image').src=this.src">
+                    
+                    <img src="img/4.jpg" alt="Ridax Spray 4" 
+                         class="cursor-pointer rounded-lg shadow-md hover:opacity-75"
+                         onclick="document.getElementById('main-product-image').src=this.src">
+                </div>
+            </div>
+            
+            <!-- Product Info -->
+            <div class="md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Ridax Bedbug Killer Spray</h2>
+                <p class="text-lg text-gray-700 mb-4">The perfect home defence specially formulated for bedbug menace in the home.</p>
+                
+                <ul class="mb-6 space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                        <span>Gets rid of bedbugs, eggs, nymphs and the entire bedbug breeding nest</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                        <span>Kills tough resistant strains of bedbug and dries up their eggs</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                        <span>Long-lasting protection - remains active for 6 months after application</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                        <span>Leaves no toxic smell and safe for a healthy night rest</span>
+                    </li>
+                </ul>
+                
+                <div class="flex items-center mb-6">
+                    <span class="text-3xl font-bold text-accent">₦9,000</span>
+                    <span class="ml-4 text-gray-600">Negotiable</span>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+                    <div class="flex items-center">
+                        <label for="quantity" class="mr-2 font-medium">Quantity:</label>
+                        <input type="number" id="quantity" min="1" value="1" class="w-16 border rounded-lg py-1 px-2">
                     </div>
-                    
-                    <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-                        <div class="flex items-center">
-                            <label for="quantity" class="mr-2 font-medium">Quantity:</label>
-                            <input type="number" id="quantity" min="1" value="1" class="w-16 border rounded-lg py-1 px-2">
-                        </div>
-                        <button id="add-to-cart" class="bg-primary hover:bg-dark text-white font-bold py-2 px-6 rounded-full inline-flex items-center">
-                            Add to Cart <i class="fas fa-shopping-cart ml-2"></i>
-                        </button>
-                    </div>
+                    <button id="add-to-cart" class="bg-primary hover:bg-dark text-white font-bold py-2 px-6 rounded-full inline-flex items-center">
+                        Add to Cart <i class="fas fa-shopping-cart ml-2"></i>
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- How to Order Section -->
     <section id="how-to-order" class="py-16 bg-white">
