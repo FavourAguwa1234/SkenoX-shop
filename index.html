@@ -71,6 +71,20 @@
             background-color: #EAB308;
             transform: scale(1.2);
         }
+        .success-message, .error-message {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .form-input:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: #2A6B37;
+            border-color: #2A6B37;
+        }
     </style>
 </head>
 <body class="bg-green-50">
@@ -222,7 +236,7 @@
                 </div>
                 
                 <div class="md:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Ridax Bedbug Killer spary</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Ridax Bedbug Killer Spray</h2>
                     <p class="text-lg text-gray-700 mb-4">The perfect home defence specially formulated for bedbug menace in the home.</p>
                     
                     <ul class="mb-6 space-y-2">
@@ -357,7 +371,7 @@
                         </div>
                         
                         <button type="submit" class="bg-primary hover:bg-dark text-white font-bold py-3 px-6 rounded-full w-full">
-                            Place Order
+                            Place Order via WhatsApp
                         </button>
                     </form>
                     
@@ -432,7 +446,7 @@
                     </button>
                     <div class="faq-answer">
                         <div class="p-5 border-t">
-                            <p class="text-gray-700">We deliver across  Abuja .</p>
+                            <p class="text-gray-700">We deliver across Abuja.</p>
                         </div>
                     </div>
                 </div>
@@ -447,77 +461,96 @@
             
             <div class="flex flex-col md:flex-row gap-8">
                 <div class="md:w-1/2">
-                    <div class="bg-light p-8 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
-                        
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Phone</h4>
-                                    <p class="text-gray-700">(+234) 803 948 1940</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
-                                    <i class="fab fa-whatsapp"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">WhatsApp</h4>
-                                    <p class="text-gray-700">080 3948 19 40</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Email</h4>
-                                    <p class="text-gray-700">Chukxila@yahoo.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Location</h4>
-                                    <p class="text-gray-700">6 ime James Street life camp,Abuja</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="bg-light p-8 rounded-lg shadow-md">
+        <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+        
+        <div class="space-y-4">
+            <!-- Phone -->
+            <div class="flex items-start">
+                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-phone"></i>
                 </div>
+                <div>
+                    <h4 class="font-semibold">Phone</h4>
+                    <p class="text-gray-700">(+234) 803 948 1940</p>
+                </div>
+            </div>
+            
+            <!-- WhatsApp -->
+            <div class="flex items-start">
+                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold">WhatsApp</h4>
+                    <p class="text-gray-700">080 3948 19 40</p>
+                </div>
+            </div>
+            
+            <!-- Email -->
+            <div class="flex items-start">
+                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold">Email</h4>
+                    <p class="text-gray-700">Chukxila@yahoo.com</p>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="flex items-start">
+                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold">Location</h4>
+                    <p class="text-gray-700">6 Ime James Street, Life Camp, Abuja</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8">
+            <h4 class="font-semibold mb-4">Business Hours</h4>
+            <p class="text-gray-700">Monday - Friday: 9:00 AM - 6:00 PM</p>
+            <p class="text-gray-700">Saturday: 10:00 AM - 4:00 PM</p>
+            <p class="text-gray-700">Sunday: Closed</p>
+        </div>
+    </div>
+</div>
+
                 
                 <div class="md:w-1/2">
                     <div class="bg-light p-8 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-semibold mb-6">Send us a Message</h3>
+                        <h3 class="text-2xl font-semibold mb-6">Send us a Message via WhatsApp</h3>
                         
-                        <form class="space-y-4">
-                            <div>
-                                <label for="contact-name" class="block text-gray-700 mb-2">Full Name</label>
-                                <input type="text" id="contact-name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <div class="text-center p-8">
+                            <div class="w-20 h-20 mx-auto bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
+                                <i class="fab fa-whatsapp text-3xl"></i>
                             </div>
-                            
-                            <div>
-                                <label for="contact-email" class="block text-gray-700 mb-2">Email Address</label>
-                                <input type="email" id="contact-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                            </div>
-                            
-                            <div>
-                                <label for="contact-message" class="block text-gray-700 mb-2">Message</label>
-                                <textarea id="contact-message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="bg-primary hover:bg-dark text-white font-bold py-3 px-6 rounded-full w-full">
-                                Send Message
-                            </button>
-                            </form>
+                            <p class="text-gray-700 mb-6">Click the button below to start a conversation with us on WhatsApp. We're here to answer any questions you may have.</p>
+                            <a href="https://wa.me/2348039481940?text=Hello%20SkenoX%2C%20I%20have%20a%20question%20about%20Ridax%20Bedbug%20Spray" 
+                               target="_blank" 
+                               class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center justify-center">
+                                <i class="fab fa-whatsapp mr-2 text-xl"></i> Message Us on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="bg-light p-8 rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold mb-6 text-center">Our Location</h3>
+                <div class="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
+                    <div class="text-center text-gray-600">
+                        <i class="fas fa-map-marker-alt text-3xl mb-2"></i>
+                        <p>6 ime James Street life camp, Abuja</p>
+                        <p class="mt-2">Map would be embedded here</p>
                     </div>
                 </div>
             </div>
@@ -538,39 +571,21 @@
                 
                 <div class="text-center md:text-right">
                     <p class="text-green-100">(+234) 803 948 1940</p>
-                    <p class="text-green-100">Chukxila@yahoo.com</p>
                 </div>
             </div>
             
             <div class="border-t border-green-700 mt-8 pt-8 text-center text-green-200">
-                <p>&copy; 2025 Ridax Bedbug Insecticide. All rights reserved.</p>
+                <p>&copy; 2025 SkenoX. All rights reserved.</p>
             </div>
         </div>
     </footer>
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/2348134847886?text=Hello%20SkenoX%2C%20I%20want%20to%20order%20Ridax%20(Bed%20Bug%20Treatment)%20spray" 
-   target="_blank" 
-   style="
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      border-radius: 50%;
-      width: 55px;
-      height: 55px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      z-index: 9999;
-   ">
-   <!-- WhatsApp Icon (SVG) -->
-   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-     <path d="M13.601 2.326A7.902 7.902 0 0 0 8 0C3.58 0 0 3.58 0 8c0 1.404.363 2.773 1.05 3.978L.057 16l4.13-1.084A7.96 7.96 0 0 0 8 16c4.42 0 8-3.58 8-8a7.902 7.902 0 0 0-2.399-5.674ZM8 14.5a6.46 6.46 0 0 1-3.356-.92l-.24-.144-2.45.643.655-2.39-.157-.246A6.465 6.465 0 0 1 1.5 8a6.5 6.5 0 1 1 13 0c0 3.584-2.916 6.5-6.5 6.5Zm3.72-4.705c-.204-.102-1.204-.593-1.39-.66-.187-.07-.324-.102-.46.102-.136.204-.528.66-.647.796-.118.136-.24.153-.444.051-.204-.102-.86-.317-1.637-1.01-.605-.54-1.012-1.204-1.131-1.408-.118-.204-.013-.314.09-.415.092-.091.204-.24.306-.36.102-.118.136-.204.204-.34.068-.136.034-.255-.017-.356-.051-.102-.46-1.11-.63-1.52-.166-.398-.335-.344-.46-.35-.118-.007-.255-.007-.392-.007a.755.755 0 0 0-.548.255c-.187.204-.715.699-.715 1.705 0 1.006.732 1.977.834 2.11.102.136 1.44 2.197 3.487 3.084.487.21.867.335 1.163.428.488.156.931.134 1.28.081.391-.058 1.204-.49 1.374-.963.17-.474.17-.88.119-.964-.05-.085-.187-.136-.392-.238Z"/>
-   </svg>
-</a>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/2348039481940?text=Hello%20SkenoX%2C%20I%20want%20to%20order%20Ridax%20(Bed%20Bug%20Treatment)%20spray" 
+       target="_blank" 
+       class="fixed bottom-5 right-5 bg-[#25D366] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
 
     <script>
         // Mobile menu toggle
