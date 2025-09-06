@@ -93,7 +93,7 @@
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
                 <i class="fas fa-bug text-3xl text-primary mr-2"></i>
-                <span class="text-2xl font-bold text-primary">SkenoX</span>
+                <span class="text-2xl font-bold text-primary">SkenoX shop</span>
             </div>
             
             <nav class="hidden md:flex space-x-8">
@@ -497,7 +497,8 @@
                 </div>
                 <div>
                     <h4 class="font-semibold">Phone</h4>
-                    <p class="text-gray-700">(+234) 803 948 1940</p>
+                    <p class="text-gray-700">
+09043565308</p>
                 </div>
             </div>
             
@@ -589,7 +590,7 @@
                 <div class="mb-6 md:mb-0">
                     <div class="flex items-center">
                         <i class="fas fa-bug text-3xl text-secondary mr-2"></i>
-                        <span class="text-2xl font-bold">SkenoX</span>
+                        <span class="text-2xl font-bold">Ridax</span>
                     </div>
                     <p class="mt-2 text-green-100">The perfect solution for bedbug problems</p>
                 </div>
@@ -832,55 +833,59 @@ scrollTopBtn.addEventListener("click", () => {
             alert(`${quantity} item(s) added to cart!`);
         });
         
-        orderForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (cartItems.length === 0) {
-                alert('Your cart is empty. Please add items to your cart before placing an order.');
-                return;
-            }
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const notes = document.getElementById('notes').value;
-            
-            // Prepare WhatsApp message
-            const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-            const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-            
-            let message = `New Order from Radix Website%0A%0A`;
-            message += `Name: ${name}%0A`;
-            message += `Phone: ${phone}%0A`;
-            message += `Address: ${address}%0A`;
-            message += `Product: Ridax Bedbug Insecticide%0A`;
-            message += `Quantity: ${totalItems}%0A`;
-            message += `Total: ₦${totalPrice.toLocaleString()}%0A`;
-            
-            if (notes) {
-                message += `Notes: ${notes}%0A`;
-            }
-            
-            // Open WhatsApp with pre-filled message
-            window.open(`https://wa.me/2349043565308?text=${message}`, '_blank');
-            
-            // Hide form and show thank you message
-            orderForm.style.display = 'none';
-            thankYouMessage.style.display = 'block';
-            
-            // Scroll to thank you message
-            thankYouMessage.scrollIntoView({ behavior: 'smooth' });
-            
-            // Clear cart
-            cartItems = [];
-            updateCartDisplay();
-            updateCartCount();
-            
-            // Reset form
-            orderForm.reset();
-        });
-        
+       orderForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (cartItems.length === 0) {
+        alert('Your cart is empty. Please add items to your cart before placing an order.');
+        return;
+    }
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    const notes = document.getElementById('notes').value;
+    
+    // Prepare WhatsApp message
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+    const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+    
+    let message = `New Order from SkenoX Website%0A%0A`;
+    message += `*Product Details:*%0A`;
+    message += `Product Name: Ridax Bedbug Insecticide%0A`;
+    message += `Product Code: RDX-001%0A`; // Added product number/code
+    message += `Unit Price: ₦9,000%0A`;
+    message += `Quantity: ${totalItems}%0A`;
+    message += `Total Price: ₦${totalPrice.toLocaleString()}%0A%0A`;
+    
+    message += `*Customer Information:*%0A`;
+    message += `Name: ${name}%0A`;
+    message += `Phone: ${phone}%0A`;
+    message += `Address: ${address}%0A`;
+    
+    if (notes) {
+        message += `Notes: ${notes}%0A`;
+    }
+    
+    // Open WhatsApp with pre-filled message
+    window.open(`https://wa.me/2349043565308?text=${message}`, '_blank');
+    
+    // Hide form and show thank you message
+    orderForm.style.display = 'none';
+    thankYouMessage.style.display = 'block';
+    
+    // Scroll to thank you message
+    thankYouMessage.scrollIntoView({ behavior: 'smooth' });
+    
+    // Clear cart
+    cartItems = [];
+    updateCartDisplay();
+    updateCartCount();
+    
+    // Reset form
+    orderForm.reset();
+});
         // Initialize cart display
         updateCartDisplay();
         updateCartCount();
