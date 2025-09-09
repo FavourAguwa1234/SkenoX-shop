@@ -85,6 +85,14 @@
             ring-color: #2A6B37;
             border-color: #2A6B37;
         }
+        .pricing-option {
+            transition: all 0.3s ease;
+        }
+        .pricing-option:hover, .pricing-option.selected {
+            transform: scale(1.03);
+            border-color: #2A6B37;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body class="bg-green-50">
@@ -93,7 +101,7 @@
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
                 <i class="fas fa-bug text-3xl text-primary mr-2"></i>
-                <span class="text-2xl font-bold text-primary">SkenoX shop</span>
+                <span class="text-2xl font-bold text-primary">SkenoX shop</span>
             </div>
             
             <nav class="hidden md:flex space-x-8">
@@ -103,17 +111,9 @@
                 <a href="#how-to-order" class="text-gray-700 hover:text-primary font-medium">How to Order</a>
                 <a href="#faq" class="text-gray-700 hover:text-primary font-medium">FAQ</a>
                 <a href="#contact" class="text-gray-700 hover:text-primary font-medium">Contact</a>
-                <a href="#cart" class="text-gray-700 hover:text-primary font-medium relative">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="absolute -top-2 -right-3 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center" id="cart-count">0</span>
-                </a>
             </nav>
             
             <div class="md:hidden flex items-center">
-                <a href="#cart" class="text-primary mr-4 relative">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="absolute -top-2 -right-3 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center" id="mobile-cart-count">0</span>
-                </a>
                 <button id="menu-btn" class="text-primary">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
@@ -128,7 +128,6 @@
             <a href="#how-to-order" class="block py-2 text-gray-700 hover:text-primary">How to Order</a>
             <a href="#faq" class="block py-2 text-gray-700 hover:text-primary">FAQ</a>
             <a href="#contact" class="block py-2 text-gray-700 hover:text-primary">Contact</a>
-            <a href="#cart" class="block py-2 text-gray-700 hover:text-primary">Cart</a>
         </div>
     </header>
 
@@ -282,20 +281,33 @@
                     </li>
                 </ul>
                 
-                <div class="flex items-center mb-6">
-                    <span class="text-3xl font-bold text-accent">₦9,000</span>
-                    <span class="ml-4 text-gray-600">Negotiable</span>
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4">Choose Your Package (Delivery Included):</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="pricing-option border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" data-quantity="1" data-price="9000">
+                            <h4 class="font-semibold text-lg">1 Bottle</h4>
+                            <p class="text-2xl font-bold text-accent my-2">₦9,000</p>
+                            <p class="text-sm text-gray-600">Delivery Included</p>
+                        </div>
+                        
+                        <div class="pricing-option border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" data-quantity="2" data-price="16000">
+                            <h4 class="font-semibold text-lg">2 Bottles</h4>
+                            <p class="text-2xl font-bold text-accent my-2">₦16,000</p>
+                            <p class="text-sm text-gray-600">Save ₦2,000</p>
+                        </div>
+                        
+                        <div class="pricing-option border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" data-quantity="4" data-price="28500">
+                            <h4 class="font-semibold text-lg">4 Bottles</h4>
+                            <p class="text-2xl font-bold text-accent my-2">₦28,500</p>
+                            <p class="text-sm text-gray-600">Save ₦7,500</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-                    <div class="flex items-center">
-                        <label for="quantity" class="mr-2 font-medium">Quantity:</label>
-                        <input type="number" id="quantity" min="1" value="1" class="w-16 border rounded-lg py-1 px-2">
-                    </div>
-                    <button id="add-to-cart" class="bg-primary hover:bg-dark text-white font-bold py-2 px-6 rounded-full inline-flex items-center">
-                        Add to Cart <i class="fas fa-shopping-cart ml-2"></i>
-                    </button>
-                </div>
+                <button id="order-now" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-full w-full">
+                    Order Now via WhatsApp
+                </button>
             </div>
         </div>
     </div>
@@ -313,8 +325,8 @@
                     <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center">
                         <i class="fab fa-whatsapp text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Add to Cart</h3>
-                    <p class="text-gray-700">Select your desired quantity and add to cart</p>
+                    <h3 class="text-xl font-semibold mb-2">Select Package</h3>
+                    <p class="text-gray-700">Choose your preferred package option</p>
                 </div>
                 
                 <div class="bg-light p-6 rounded-lg shadow-md text-center relative">
@@ -344,24 +356,20 @@
                     <p class="text-gray-700">Get your product delivered and pay at your doorstep</p>
                 </div>
             </div>
-            
-            <div class="text-center mt-12">
-                <a href="#cart" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-full inline-flex items-center">
-                    <i class="fas fa-shopping-cart mr-2"></i> Proceed to Checkout
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- Cart Section -->
-    <section id="cart" class="py-16 bg-green-50">
+    <!-- Order Form Section -->
+    <section id="order-form-section" class="py-16 bg-green-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Your Cart</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Place Your Order</h2>
             
             <div class="max-w-3xl mx-auto">
-                <div id="cart-items" class="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <p class="text-center text-gray-600" id="empty-cart-message">Your cart is empty</p>
-                    <!-- Cart items will be added here dynamically -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h3 class="text-xl font-semibold mb-4">Selected Package</h3>
+                    <div id="selected-package" class="bg-green-50 p-4 rounded-lg">
+                        <p class="text-center text-gray-600">Please select a package from the options above</p>
+                    </div>
                 </div>
                 
                 <div class="bg-white rounded-lg shadow-md p-6">
@@ -459,7 +467,7 @@
                     </button>
                     <div class="faq-answer">
                         <div class="p-5 border-t">
-                            <p class="text-gray-700">Yes, you can order multiple bottles. Simply let us know the quantity you need when placing your order.</p>
+                            <p class="text-gray-700">Yes, you can order multiple bottles. We offer special pricing for 2 and 4 bottle packages with delivery included.</p>
                         </div>
                     </div>
                 </div>
@@ -471,7 +479,7 @@
                     </button>
                     <div class="faq-answer">
                         <div class="p-5 border-t">
-                            <p class="text-gray-700">We deliver across Abuja and North Central States .</p>
+                            <p class="text-gray-700">We deliver across Abuja and North Central States.</p>
                         </div>
                     </div>
                 </div>
@@ -497,8 +505,7 @@
                 </div>
                 <div>
                     <h4 class="font-semibold">Phone</h4>
-                    <p class="text-gray-700">
-09043565308</p>
+                    <p class="text-gray-700">09043565308</p>
                 </div>
             </div>
             
@@ -575,7 +582,7 @@
                 <div class="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
                     <div class="text-center text-gray-600">
                         <i class="fas fa-map-marker-alt text-3xl mb-2"></i>
-                        <p>Shop BSF 11717 Old Banex Plaza, Wuse 2 Abuja, Nigeria</p>
+                        <p>Shop BSF 11717 Old Banex Plaza, Wuse 2 Abuja, Nigeria</p>
                         <!-- <p class="mt-2">Map would be embedded here</p> -->
                     </div>
                 </div>
@@ -590,7 +597,7 @@
                 <div class="mb-6 md:mb-0">
                     <div class="flex items-center">
                         <i class="fas fa-bug text-3xl text-secondary mr-2"></i>
-                        <span class="text-2xl font-bold">SkenoX shop</span>
+                        <span class="text-2xl font-bold">SkenoX shop</span>
                     </div>
                     <p class="mt-2 text-green-100">The perfect solution for bedbug problems</p>
                 </div>
@@ -617,12 +624,6 @@
         class="hidden fixed bottom-24 right-5 bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-50 hover:bg-blue-700">
     <i class="fas fa-arrow-up text-lg"></i>
 </button>
-
-<!-- View Cart Button -->
-<a href="#cart" 
-   class="fixed bottom-44 right-5 bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-50 hover:bg-orange-600">
-   <i class="fas fa-shopping-cart text-lg"></i>
-</a>
 
 <script>
 // Scroll-to-top button logic
@@ -738,157 +739,123 @@ scrollTopBtn.addEventListener("click", () => {
             showSlide(nextSlide);
         }, 5000);
         
-        // Cart functionality
-        let cartItems = [];
-        const cartCount = document.getElementById('cart-count');
-        const mobileCartCount = document.getElementById('mobile-cart-count');
-        const cartItemsContainer = document.getElementById('cart-items');
-        const emptyCartMessage = document.getElementById('empty-cart-message');
-        const addToCartBtn = document.getElementById('add-to-cart');
-        const quantityInput = document.getElementById('quantity');
+        // Package selection functionality
+        let selectedPackage = null;
+        const pricingOptions = document.querySelectorAll('.pricing-option');
+        const selectedPackageDisplay = document.getElementById('selected-package');
+        const orderNowBtn = document.getElementById('order-now');
         const orderForm = document.getElementById('order-form');
         const thankYouMessage = document.getElementById('thank-you-message');
         
-        function updateCartCount() {
-            const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            mobileCartCount.textContent = totalItems;
-        }
-        
-        function updateCartDisplay() {
-            if (cartItems.length === 0) {
-                emptyCartMessage.style.display = 'block';
-                cartItemsContainer.innerHTML = '';
-                return;
-            }
-            
-            emptyCartMessage.style.display = 'none';
-            
-            let cartHTML = '';
-            let total = 0;
-            
-            cartItems.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
+        pricingOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                pricingOptions.forEach(opt => {
+                    opt.classList.remove('selected', 'border-primary');
+                    opt.classList.add('border-gray-200');
+                });
                 
-                cartHTML += `
-                    <div class="cart-item flex justify-between items-center py-4 border-b">
-                        <div>
-                            <h4 class="font-semibold">Ridax Bedbug Insecticide</h4>
-                            <p class="text-gray-600">₦${item.price.toLocaleString()} x ${item.quantity}</p>
-                        </div>
-                        <div class="flex items-center">
-                            <span class="font-semibold mr-4">₦${itemTotal.toLocaleString()}</span>
-                            <button class="remove-item text-red-500" data-index="${index}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
+                // Add selected class to clicked option
+                this.classList.add('selected', 'border-primary');
+                this.classList.remove('border-gray-200');
+                
+                // Store selected package
+                selectedPackage = {
+                    quantity: this.getAttribute('data-quantity'),
+                    price: this.getAttribute('data-price')
+                };
+                
+                // Update selected package display
+                updateSelectedPackageDisplay();
             });
-            
-            cartHTML += `
-                <div class="flex justify-between items-center pt-4">
-                    <h4 class="text-xl font-semibold">Total</h4>
-                    <span class="text-xl font-semibold">₦${total.toLocaleString()}</span>
-                </div>
-            `;
-            
-            cartItemsContainer.innerHTML = cartHTML;
-            
-            // Add event listeners to remove buttons
-            document.querySelectorAll('.remove-item').forEach(button => {
-                button.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    cartItems.splice(index, 1);
-                    updateCartDisplay();
-                    updateCartCount();
-                });
-            });
-        }
-        
-        addToCartBtn.addEventListener('click', function() {
-            const quantity = parseInt(quantityInput.value);
-            
-            if (isNaN(quantity) || quantity < 1) {
-                alert('Please enter a valid quantity');
-                return;
-            }
-            
-            // Check if product already in cart
-            if (cartItems.length > 0) {
-                cartItems[0].quantity += quantity;
-            } else {
-                cartItems.push({
-                    name: 'Ridax Bedbug Insecticide',
-                    price: 9000,
-                    quantity: quantity
-                });
-            }
-            
-            updateCartDisplay();
-            updateCartCount();
-            
-            // Show confirmation
-            alert(`${quantity} item(s) added to cart!`);
         });
         
-       orderForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    if (cartItems.length === 0) {
-        alert('Your cart is empty. Please add items to your cart before placing an order.');
-        return;
-    }
-    
-    // Get form values
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-    const notes = document.getElementById('notes').value;
-    
-    // Prepare WhatsApp message
-    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-    const totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-    
-    let message = `New Order from SkenoX Website%0A%0A`;
-    message += `*Product Details:*%0A`;
-    message += `Product Name: Ridax Bedbug Insecticide%0A`;
-    message += `Product Code: RDX-001%0A`; // Added product number/code
-    message += `Unit Price: ₦9,000%0A`;
-    message += `Quantity: ${totalItems}%0A`;
-    message += `Total Price: ₦${totalPrice.toLocaleString()}%0A%0A`;
-    
-    message += `*Customer Information:*%0A`;
-    message += `Name: ${name}%0A`;
-    message += `Phone: ${phone}%0A`;
-    message += `Address: ${address}%0A`;
-    
-    if (notes) {
-        message += `Notes: ${notes}%0A`;
-    }
-    
-    // Open WhatsApp with pre-filled message
-    window.open(`https://wa.me/2349043565308?text=${message}`, '_blank');
-    
-    // Hide form and show thank you message
-    orderForm.style.display = 'none';
-    thankYouMessage.style.display = 'block';
-    
-    // Scroll to thank you message
-    thankYouMessage.scrollIntoView({ behavior: 'smooth' });
-    
-    // Clear cart
-    cartItems = [];
-    updateCartDisplay();
-    updateCartCount();
-    
-    // Reset form
-    orderForm.reset();
-});
-        // Initialize cart display
-        updateCartDisplay();
-        updateCartCount();
+        function updateSelectedPackageDisplay() {
+            if (!selectedPackage) return;
+            
+            const savings = {
+                '1': 0,
+                '2': 2000,
+                '4': 7500
+            };
+            
+            selectedPackageDisplay.innerHTML = `
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h4 class="font-semibold">${selectedPackage.quantity} Bottle${selectedPackage.quantity > 1 ? 's' : ''}</h4>
+                        <p class="text-gray-600">Delivery Included</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xl font-bold text-accent">₦${parseInt(selectedPackage.price).toLocaleString()}</p>
+                        ${savings[selectedPackage.quantity] > 0 ? 
+                          `<p class="text-sm text-green-600">Save ₦${savings[selectedPackage.quantity].toLocaleString()}</p>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+        
+        orderNowBtn.addEventListener('click', function() {
+            if (!selectedPackage) {
+                alert('Please select a package first');
+                return;
+            }
+            
+            // Scroll to order form
+            document.getElementById('order-form-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedPackage) {
+                alert('Please select a package first');
+                return;
+            }
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const notes = document.getElementById('notes').value;
+            
+            // Prepare WhatsApp message
+            let message = `New Order from SkenoX Website%0A%0A`;
+            message += `*Product Details:*%0A`;
+            message += `Product Name: Ridax Bedbug Insecticide%0A`;
+            message += `Package: ${selectedPackage.quantity} Bottle${selectedPackage.quantity > 1 ? 's' : ''}%0A`;
+            message += `Total Price: ₦${parseInt(selectedPackage.price).toLocaleString()}%0A`;
+            message += `(Delivery Included)%0A%0A`;
+            
+            message += `*Customer Information:*%0A`;
+            message += `Name: ${name}%0A`;
+            message += `Phone: ${phone}%0A`;
+            message += `Address: ${address}%0A`;
+            
+            if (notes) {
+                message += `Notes: ${notes}%0A`;
+            }
+            
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/2349043565308?text=${message}`, '_blank');
+            
+            // Hide form and show thank you message
+            orderForm.style.display = 'none';
+            thankYouMessage.style.display = 'block';
+            
+            // Scroll to thank you message
+            thankYouMessage.scrollIntoView({ behavior: 'smooth' });
+            
+            // Reset form
+            orderForm.reset();
+            
+            // Reset selected package
+            pricingOptions.forEach(opt => {
+                opt.classList.remove('selected', 'border-primary');
+                opt.classList.add('border-gray-200');
+            });
+            selectedPackage = null;
+            selectedPackageDisplay.innerHTML = '<p class="text-center text-gray-600">Please select a package from the options above</p>';
+        });
     </script>
 </body>
 </html>
