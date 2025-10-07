@@ -6,6 +6,8 @@
     <title>Ridax - Effective Bedbug Insecticide</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -16,6 +18,22 @@
                         accent: '#DC2626',
                         light: '#F0FDF4',
                         dark: '#14532D'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' }
+                        }
                     }
                 }
             }
@@ -23,7 +41,19 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Poppins', sans-serif; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            scroll-behavior: smooth;
+        }
+        
+        /* Parallax effect for hero section */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
         .hero-slide {
             background-size: cover;
             background-position: center;
@@ -38,12 +68,14 @@
         .slide-3 {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/radix2.jpg');
         }
+        
         .feature-icon {
             transition: transform 0.3s ease;
         }
         .feature-card:hover .feature-icon {
             transform: scale(1.2);
         }
+        
         .faq-answer {
             max-height: 0;
             overflow: hidden;
@@ -52,18 +84,22 @@
         .faq-item.active .faq-answer {
             max-height: 500px;
         }
+        
         .product-image {
             transition: transform 0.3s ease;
         }
         .product-image:hover {
             transform: scale(1.05);
         }
+        
         .cart-item {
             transition: all 0.3s ease;
         }
+        
         .thank-you-message {
             display: none;
         }
+        
         .slider-dot {
             transition: all 0.3s ease;
         }
@@ -71,20 +107,24 @@
             background-color: #EAB308;
             transform: scale(1.2);
         }
+        
         .success-message, .error-message {
             display: none;
             animation: fadeIn 0.5s ease-in-out;
         }
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        
         .form-input:focus {
             outline: none;
             ring: 2px;
             ring-color: #2A6B37;
             border-color: #2A6B37;
         }
+        
         .pricing-option {
             transition: all 0.3s ease;
         }
@@ -93,52 +133,300 @@
             border-color: #2A6B37;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
+        
+        /* Particle background animation - UPDATED */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        /* Animated counter */
+        .counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        /* Glow effect for CTA buttons */
+        .glow {
+            box-shadow: 0 0 10px rgba(234, 179, 8, 0.5);
+        }
+        .glow:hover {
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.8);
+        }
+        
+        /* Floating animation for elements */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(45deg, #2A6B37, #EAB308);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Stagger animation for lists */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #2A6B37;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #2A6B37; }
+        }
+        
+        /* 3D card effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+        
+        /* Custom cursor for interactive elements */
+        .cursor-pointer {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%232A6B37' d='M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z'/%3E%3C/svg%3E"), auto;
+        }
+        
+        /* Professional Preloader Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2A6B37 0%, #14532D 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        
+        .preloader-content {
+            text-align: center;
+            color: white;
+            max-width: 500px;
+            padding: 0 20px;
+        }
+        
+        .preloader-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .preloader-logo i {
+            font-size: 3rem;
+            margin-right: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        .preloader-logo span {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .preloader-progress {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        
+        .preloader-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #EAB308, #FDE047);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        
+        .preloader-percentage {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .preloader-message {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 20px;
+        }
+        
+        .preloader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #EAB308;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin-bottom: 20px;
+            margin-left: 60px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-dots {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 20px;
+            margin-top: 10px;
+        }
+        
+        .loading-dots div {
+            position: absolute;
+            top: 0;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #EAB308;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        
+        .loading-dots div:nth-child(1) {
+            left: 8px;
+            animation: loading-dots1 0.6s infinite;
+        }
+        
+        .loading-dots div:nth-child(2) {
+            left: 8px;
+            animation: loading-dots2 0.6s infinite;
+        }
+        
+        .loading-dots div:nth-child(3) {
+            left: 32px;
+            animation: loading-dots2 0.6s infinite;
+        }
+        
+        .loading-dots div:nth-child(4) {
+            left: 56px;
+            animation: loading-dots3 0.6s infinite;
+        }
+        
+        @keyframes loading-dots1 {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes loading-dots3 {
+            0% { transform: scale(1); }
+            100% { transform: scale(0); }
+        }
+        
+        @keyframes loading-dots2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(24px, 0); }
+        }
     </style>
 </head>
 <body class="bg-green-50">
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
+    <!-- Professional Preloader -->
+    <div id="loading-screen">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <i class="fas fa-bug text-secondary"></i>
+                <span>SkenoX</span>
+            </div>
+            
+            <div class="preloader-spinner"></div>
+            
+            <div class="preloader-percentage" id="percentage">0%</div>
+            
+            <div class="preloader-progress">
+                <div class="preloader-progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="preloader-message" id="loading-message">
+                Preparing your experience...
+            </div>
+            
+            <div class="loading-dots">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header - Initially hidden -->
+    <header id="main-header" class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300 hidden">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <i class="fas fa-bug text-3xl text-primary mr-2"></i>
+                <i class="fas fa-bug text-3xl text-primary mr-2 animate-pulse-slow"></i>
                 <span class="text-2xl font-bold text-primary">SkenoX shop</span>
             </div>
             
             <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="text-gray-700 hover:text-primary font-medium">Home</a>
-                <a href="#features" class="text-gray-700 hover:text-primary font-medium">Features</a>
-                <a href="#product" class="text-gray-700 hover:text-primary font-medium">Product</a>
-                <a href="#how-to-order" class="text-gray-700 hover:text-primary font-medium">How to Order</a>
-                <a href="#faq" class="text-gray-700 hover:text-primary font-medium">FAQ</a>
-                <a href="#contact" class="text-gray-700 hover:text-primary font-medium">Contact</a>
+                <a href="#home" class="text-gray-700 hover:text-primary font-medium transition-colors duration-300">Home</a>
+                <a href="#features" class="text-gray-700 hover:text-primary font-medium transition-colors duration-300">Features</a>
+                <a href="#product" class="text-gray-700 hover:text-primary font-medium transition-colors duration-300">Product</a>
+                <a href="#how-to-order" class="text-gray-700 hover:text-primary font-medium transition-colors duration-300">How to Order</a>
+                <a href="#faq" class="text-gray-700 hover:text-primary font-medium transition-colors duration-300">FAQ</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium transition-colors duration-300">Contact</a>
             </nav>
             
             <div class="md:hidden flex items-center">
-                <button id="menu-btn" class="text-primary">
+                <button id="menu-btn" class="text-primary transition-transform duration-300 hover:scale-110">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pb-4">
-            <a href="#home" class="block py-2 text-gray-700 hover:text-primary">Home</a>
-            <a href="#features" class="block py-2 text-gray-700 hover:text-primary">Features</a>
-            <a href="#product" class="block py-2 text-gray-700 hover:text-primary">Product</a>
-            <a href="#how-to-order" class="block py-2 text-gray-700 hover:text-primary">How to Order</a>
-            <a href="#faq" class="block py-2 text-gray-700 hover:text-primary">FAQ</a>
-            <a href="#contact" class="block py-2 text-gray-700 hover:text-primary">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pb-4 transition-all duration-300">
+            <a href="#home" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">Home</a>
+            <a href="#features" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">Features</a>
+            <a href="#product" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">Product</a>
+            <a href="#how-to-order" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">How to Order</a>
+            <a href="#faq" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">FAQ</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-primary transition-colors duration-300">Contact</a>
         </div>
     </header>
 
     <!-- Hero Slider Section -->
-    <section id="home" class="relative h-screen">
+    <section id="home" class="relative h-screen overflow-hidden">
         <!-- Slide 1 -->
         <div class="hero-slide slide-1 absolute inset-0 flex items-center justify-center text-white opacity-100">
-            <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Say Goodbye to Bed Bugs with Ridax</h1>
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 typewriter">Say Goodbye to Bed Bugs with Ridax</h1>
                 <p class="text-xl md:text-2xl mb-8">Fast, Safe & Effective Solution for Your Home</p>
-                <a href="#product" class="bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center">
+                <a href="#product" class="bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center glow transition-all duration-300 transform hover:scale-105">
                     Order Now <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
@@ -146,10 +434,10 @@
         
         <!-- Slide 2 -->
         <div class="hero-slide slide-2 absolute inset-0 flex items-center justify-center text-white opacity-0">
-            <div class="container mx-auto px-4 text-center">
+            <div class="container mx-auto px-4 text-center relative z-10">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4">Eliminates All Types of Insects</h1>
                 <p class="text-xl md:text-2xl mb-8">Effective against bedbugs, roaches, ants, and more</p>
-                <a href="#product" class="bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center">
+                <a href="#product" class="bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center glow transition-all duration-300 transform hover:scale-105">
                     Order Now <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
@@ -157,29 +445,60 @@
         
         <!-- Slide 3 -->
         <div class="hero-slide slide-3 absolute inset-0 flex items-center justify-center text-white opacity-0">
-            <div class="container mx-auto px-4 text-center">
+            <div class="container mx-auto px-4 text-center relative z-10">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4">Long-lasting Protection</h1>
                 <p class="text-xl md:text-2xl mb-8">Remains effective for up to 6 months after application</p>
-                <a href="#product" class="bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center">
+                <a href="#product" class="bg-secondary hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full inline-flex items-center glow transition-all duration-300 transform hover:scale-105">
                     Order Now <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </div>
         
         <!-- Slider Controls -->
-        <div class="absolute bottom-8 left-0 right-0 flex justify-center space-x-3">
+        <div class="absolute bottom-8 left-0 right-0 flex justify-center space-x-3 z-10">
             <button class="slider-dot w-3 h-3 rounded-full bg-white opacity-70 active" data-slide="0"></button>
             <button class="slider-dot w-3 h-3 rounded-full bg-white opacity-70" data-slide="1"></button>
             <button class="slider-dot w-3 h-3 rounded-full bg-white opacity-70" data-slide="2"></button>
         </div>
         
         <!-- Navigation Arrows -->
-        <button id="prev-slide" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl">
+        <button id="prev-slide" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl z-10 transition-transform duration-300 hover:scale-125">
             <i class="fas fa-chevron-left"></i>
         </button>
-        <button id="next-slide" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl">
+        <button id="next-slide" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl z-10 transition-transform duration-300 hover:scale-125">
             <i class="fas fa-chevron-right"></i>
         </button>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="stat-item">
+                    <div class="counter" data-target="5000">0</div>
+                    <p class="text-green-100">Happy Customers</p>
+                </div>
+                <div class="stat-item">
+                    <div class="counter" data-target="98">0</div>
+                    <p class="text-green-100">Success Rate</p>
+                </div>
+                <div class="stat-item">
+                    <div class="counter" data-target="24">0</div>
+                    <p class="text-green-100">Hours Delivery</p>
+                </div>
+                <div class="stat-item">
+                    <div class="counter" data-target="6">0</div>
+                    <p class="text-green-100">Months Protection</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Features Section -->
@@ -188,32 +507,32 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Why Choose Ridax?</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center">
-                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full">
+                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center card-3d">
+                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full floating">
                         <i class="fas fa-bug text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Kills Instantly</h3>
                     <p class="text-gray-700">Eliminates bed bugs, eggs, nymphs and entire breeding nests on contact</p>
                 </div>
                 
-                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center">
-                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full">
+                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center card-3d">
+                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full floating">
                         <i class="fas fa-shield-alt text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Safe for Home</h3>
                     <p class="text-gray-700">No toxic smell, safe for children and pets when used as directed</p>
                 </div>
                 
-                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center">
-                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full">
+                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center card-3d">
+                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full floating">
                         <i class="fas fa-clock text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Long-lasting</h3>
                     <p class="text-gray-700">Remains active for up to 6 months after application</p>
                 </div>
                 
-                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center">
-                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full">
+                <div class="feature-card bg-light p-6 rounded-lg shadow-md text-center card-3d">
+                    <div class="feature-icon inline-flex items-center justify-center w-16 h-16 mb-4 bg-primary text-white rounded-full floating">
                         <i class="fas fa-users text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Trusted</h3>
@@ -223,96 +542,95 @@
         </div>
     </section>
 
-   <!-- Product Section -->
-<section id="product" class="py-16 bg-green-50">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-center">
-            
-            <!-- Product Images Gallery -->
-            <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                <div class="product-image rounded-lg overflow-hidden shadow-lg mb-4">
-                    <img id="main-product-image" 
-                         src="img/radix.jpg" 
-                         alt="Ridax Bedbug Insecticide" 
-                         class="w-full h-auto">
-                </div>
+    <!-- Product Section -->
+    <section id="product" class="py-16 bg-green-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
                 
-                <!-- Thumbnail Images -->
-                <div class="grid grid-cols-4 gap-4">
-                    <img src="img/radix.jpg" alt="Ridax Spray 1" 
-                         class="cursor-pointer rounded-lg shadow-md hover:opacity-75"
-                         onclick="document.getElementById('main-product-image').src=this.src">
+                <!-- Product Images Gallery -->
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <div class="product-image rounded-lg overflow-hidden shadow-lg mb-4">
+                        <img id="main-product-image" 
+                             src="img/radix.jpg" 
+                             alt="Ridax Bedbug Insecticide" 
+                             class="w-full h-auto">
+                    </div>
                     
-                    <img src="img/radix2.jpg" alt="Ridax Spray 2" 
-                         class="cursor-pointer rounded-lg shadow-md hover:opacity-75"
-                         onclick="document.getElementById('main-product-image').src=this.src">
-                    
-                    <img src="img/3.jpg" alt="Ridax Spray 3" 
-                         class="cursor-pointer rounded-lg shadow-md hover:opacity-75"
-                         onclick="document.getElementById('main-product-image').src=this.src">
-                    
-                    <img src="img/4.jpg" alt="Ridax Spray 4" 
-                         class="cursor-pointer rounded-lg shadow-md hover:opacity-75"
-                         onclick="document.getElementById('main-product-image').src=this.src">
-                </div>
-            </div>
-            
-            <!-- Product Info -->
-            <div class="md:w-1/2">
-                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Ridax Bedbug Killer Spray</h2>
-                <p class="text-lg text-gray-700 mb-4">The perfect home defence specially formulated for bedbug menace in the home.</p>
-                
-                <ul class="mb-6 space-y-2">
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                        <span>Gets rid of bedbugs, eggs, nymphs and the entire bedbug breeding nest</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                        <span>Kills tough resistant strains of bedbug and dries up their eggs</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                        <span>Long-lasting protection - remains active for 6 months after application</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
-                        <span>Leaves no toxic smell and safe for a healthy night rest</span>
-                    </li>
-                </ul>
-                
-                <div class="mb-8">
-                    <h3 class="text-xl font-semibold mb-4">Choose Your Package (Delivery Included):</h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="pricing-option border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" data-quantity="1" data-price="9000">
-                            <h4 class="font-semibold text-lg">1 Bottle</h4>
-                            <p class="text-2xl font-bold text-accent my-2">₦9,000</p>
-                            <p class="text-sm text-gray-600">Delivery Included</p>
-                        </div>
+                    <!-- Thumbnail Images -->
+                    <div class="grid grid-cols-4 gap-4">
+                        <img src="img/radix.jpg" alt="Ridax Spray 1" 
+                             class="cursor-pointer rounded-lg shadow-md hover:opacity-75 transition-all duration-300 transform hover:scale-105"
+                             onclick="document.getElementById('main-product-image').src=this.src">
                         
-                        <div class="pricing-option border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" data-quantity="2" data-price="16000">
-                            <h4 class="font-semibold text-lg">2 Bottles</h4>
-                            <p class="text-2xl font-bold text-accent my-2">₦16,000</p>
-                            <p class="text-sm text-gray-600">Save ₦2,000</p>
-                        </div>
+                        <img src="img/radix2.jpg" alt="Ridax Spray 2" 
+                             class="cursor-pointer rounded-lg shadow-md hover:opacity-75 transition-all duration-300 transform hover:scale-105"
+                             onclick="document.getElementById('main-product-image').src=this.src">
                         
-                        <div class="pricing-option border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" data-quantity="4" data-price="28500">
-                            <h4 class="font-semibold text-lg">4 Bottles</h4>
-                            <p class="text-2xl font-bold text-accent my-2">₦28,500</p>
-                            <p class="text-sm text-gray-600">Save ₦7,500</p>
-                        </div>
+                        <img src="img/3.jpg" alt="Ridax Spray 3" 
+                             class="cursor-pointer rounded-lg shadow-md hover:opacity-75 transition-all duration-300 transform hover:scale-105"
+                             onclick="document.getElementById('main-product-image').src=this.src">
+                        
+                        <img src="img/4.jpg" alt="Ridax Spray 4" 
+                             class="cursor-pointer rounded-lg shadow-md hover:opacity-75 transition-all duration-300 transform hover:scale-105"
+                             onclick="document.getElementById('main-product-image').src=this.src">
                     </div>
                 </div>
                 
-                <button id="order-now" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-full w-full">
-                    Order Now via WhatsApp
-                </button>
+                <!-- Product Info -->
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Ridax Bedbug Killer Spray</h2>
+                    <p class="text-lg text-gray-700 mb-4">The perfect home defence specially formulated for bedbug menace in the home.</p>
+                    
+                    <ul class="mb-6 space-y-2 stagger-list">
+                        <li class="flex items-start stagger-item">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Gets rid of bedbugs, eggs, nymphs and the entire bedbug breeding nest</span>
+                        </li>
+                        <li class="flex items-start stagger-item">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Kills tough resistant strains of bedbug and dries up their eggs</span>
+                        </li>
+                        <li class="flex items-start stagger-item">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Long-lasting protection - remains active for 6 months after application</span>
+                        </li>
+                        <li class="flex items-start stagger-item">
+                            <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                            <span>Leaves no toxic smell and safe for a healthy night rest</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-4">Choose Your Package (Delivery Included):</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="pricing-option border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer cursor-pointer" data-quantity="1" data-price="9000">
+                                <h4 class="font-semibold text-lg">1 Bottle</h4>
+                                <p class="text-2xl font-bold text-accent my-2">₦9,000</p>
+                                <p class="text-sm text-gray-600">Delivery Included</p>
+                            </div>
+                            
+                            <div class="pricing-option border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer cursor-pointer" data-quantity="2" data-price="16000">
+                                <h4 class="font-semibold text-lg">2 Bottles</h4>
+                                <p class="text-2xl font-bold text-accent my-2">₦16,000</p>
+                                <p class="text-sm text-gray-600">Save ₦2,000</p>
+                            </div>
+                            
+                            <div class="pricing-option border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer cursor-pointer" data-quantity="4" data-price="28500">
+                                <h4 class="font-semibold text-lg">4 Bottles</h4>
+                                <p class="text-2xl font-bold text-accent my-2">₦28,500</p>
+                                <p class="text-sm text-gray-600">Save ₦7,500</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="order-now" class="bg-primary hover:bg-dark text-white font-bold py-3 px-8 rounded-full w-full glow transition-all duration-300 transform hover:scale-105">
+                        Order Now via WhatsApp
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
     <!-- How to Order Section -->
     <section id="how-to-order" class="py-16 bg-white">
@@ -320,36 +638,36 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">How to Order</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-light p-6 rounded-lg shadow-md text-center relative">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</div>
-                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center">
+                <div class="bg-light p-6 rounded-lg shadow-md text-center relative card-3d">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold floating">1</div>
+                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center floating">
                         <i class="fab fa-whatsapp text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Select Package</h3>
                     <p class="text-gray-700">Choose your preferred package option</p>
                 </div>
                 
-                <div class="bg-light p-6 rounded-lg shadow-md text-center relative">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</div>
-                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center">
+                <div class="bg-light p-6 rounded-lg shadow-md text-center relative card-3d">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold floating">2</div>
+                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center floating">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Provide Details</h3>
                     <p class="text-gray-700">Fill in your name, address, and phone number</p>
                 </div>
                 
-                <div class="bg-light p-6 rounded-lg shadow-md text-center relative">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</div>
-                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center">
+                <div class="bg-light p-6 rounded-lg shadow-md text-center relative card-3d">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold floating">3</div>
+                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center floating">
                         <i class="fas fa-check-circle text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Confirm Order</h3>
                     <p class="text-gray-700">Our team will confirm your order details</p>
                 </div>
                 
-                <div class="bg-light p-6 rounded-lg shadow-md text-center relative">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">4</div>
-                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center">
+                <div class="bg-light p-6 rounded-lg shadow-md text-center relative card-3d">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold floating">4</div>
+                    <div class="w-16 h-16 mx-auto mb-4 bg-primary bg-opacity-20 text-primary rounded-full flex items-center justify-center floating">
                         <i class="fas fa-truck text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2">Receive Delivery</h3>
@@ -365,37 +683,37 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Place Your Order</h2>
             
             <div class="max-w-3xl mx-auto">
-                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6 card-3d">
                     <h3 class="text-xl font-semibold mb-4">Selected Package</h3>
                     <div id="selected-package" class="bg-green-50 p-4 rounded-lg">
                         <p class="text-center text-gray-600">Please select a package from the options above</p>
                     </div>
                 </div>
                 
-                <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="bg-white rounded-lg shadow-md p-6 card-3d">
                     <h3 class="text-xl font-semibold mb-4">Order Information</h3>
                     
                     <form id="order-form" class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label for="name" class="block text-gray-700 mb-2">Full Name *</label>
-                                <input type="text" id="name" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                <input type="text" id="name" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
                             </div>
                             
                             <div>
                                 <label for="phone" class="block text-gray-700 mb-2">Phone Number *</label>
-                                <input type="tel" id="phone" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                <input type="tel" id="phone" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
                             </div>
                         </div>
                         
                         <div>
                             <label for="address" class="block text-gray-700 mb-2">Delivery Address *</label>
-                            <textarea id="address" rows="3" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                            <textarea id="address" rows="3" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300"></textarea>
                         </div>
                         
                         <div>
                             <label for="notes" class="block text-gray-700 mb-2">Additional Notes (Optional)</label>
-                            <textarea id="notes" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                            <textarea id="notes" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300"></textarea>
                         </div>
                         
                         <div class="flex items-center">
@@ -403,7 +721,7 @@
                             <label for="payment-method" class="text-gray-700">Payment on Delivery</label>
                         </div>
                         
-                        <button type="submit" class="bg-primary hover:bg-dark text-white font-bold py-3 px-6 rounded-full w-full">
+                        <button type="submit" class="bg-primary hover:bg-dark text-white font-bold py-3 px-6 rounded-full w-full glow transition-all duration-300 transform hover:scale-105">
                             Place Order via WhatsApp
                         </button>
                     </form>
@@ -424,10 +742,10 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center text-dark mb-12">Frequently Asked Questions</h2>
             
             <div class="max-w-3xl mx-auto space-y-4">
-                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
-                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center">
+                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden card-3d">
+                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center transition-all duration-300 hover:bg-green-50">
                         Is Ridax safe for children and pets?
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer">
                         <div class="p-5 border-t">
@@ -436,10 +754,10 @@
                     </div>
                 </div>
                 
-                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
-                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center">
+                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden card-3d">
+                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center transition-all duration-300 hover:bg-green-50">
                         How fast does it work?
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer">
                         <div class="p-5 border-t">
@@ -448,10 +766,10 @@
                     </div>
                 </div>
                 
-                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
-                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center">
+                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden card-3d">
+                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center transition-all duration-300 hover:bg-green-50">
                         Do I need to pay online?
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer">
                         <div class="p-5 border-t">
@@ -460,10 +778,10 @@
                     </div>
                 </div>
                 
-                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
-                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center">
+                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden card-3d">
+                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center transition-all duration-300 hover:bg-green-50">
                         Can I buy more than one?
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer">
                         <div class="p-5 border-t">
@@ -472,10 +790,10 @@
                     </div>
                 </div>
                 
-                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden">
-                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center">
+                <div class="faq-item bg-white rounded-lg shadow-md overflow-hidden card-3d">
+                    <button class="faq-question w-full text-left p-5 font-semibold text-lg flex justify-between items-center transition-all duration-300 hover:bg-green-50">
                         Which areas do you deliver to?
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer">
                         <div class="p-5 border-t">
@@ -494,77 +812,76 @@
             
             <div class="flex flex-col md:flex-row gap-8">
                 <div class="md:w-1/2">
-    <div class="bg-light p-8 rounded-lg shadow-md">
-        <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
-        
-        <div class="space-y-4">
-            <!-- Phone -->
-            <div class="flex items-start">
-                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <div>
-                    <h4 class="font-semibold">Phone</h4>
-                    <p class="text-gray-700">09043565308</p>
-                </div>
-            </div>
-            
-            <!-- WhatsApp -->
-            <div class="flex items-start">
-                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <div>
-                    <h4 class="font-semibold">WhatsApp</h4>
-                    <p class="text-gray-700">09043565308</p>
-                </div>
-            </div>
-            
-            <!-- Email -->
-            <div class="flex items-start">
-                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div>
-                    <h4 class="font-semibold">Email</h4>
-                    <p class="text-gray-700">Chukxila@yahoo.com</p>
-                </div>
-            </div>
+                    <div class="bg-light p-8 rounded-lg shadow-md card-3d">
+                        <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+                        
+                        <div class="space-y-4">
+                            <!-- Phone -->
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4 floating">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Phone</h4>
+                                    <p class="text-gray-700">09043565308</p>
+                                </div>
+                            </div>
+                            
+                            <!-- WhatsApp -->
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4 floating">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">WhatsApp</h4>
+                                    <p class="text-gray-700">09043565308</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4 floating">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p class="text-gray-700">Chukxila@yahoo.com</p>
+                                </div>
+                            </div>
 
-            <!-- Location -->
-            <div class="flex items-start">
-                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4">
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <div>
-                    <h4 class="font-semibold">Location</h4>
-                    <p class="text-gray-700">Shop BSF 11717 Old Banex Plaza, Wuse 2 Abuja, Nigeria</p>
-                </div>
-            </div>
-        </div>
+                            <!-- Location -->
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-4 floating">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Location</h4>
+                                    <p class="text-gray-700">Shop BSF 11717 Old Banex Plaza, Wuse 2 Abuja, Nigeria</p>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="mt-8">
-            <h4 class="font-semibold mb-4">Business Hours</h4>
-            <p class="text-gray-700">Monday - Friday: 9:00 AM - 6:00 PM</p>
-            <p class="text-gray-700">Saturday: 10:00 AM - 4:00 PM</p>
-            <p class="text-gray-700">Sunday: Closed</p>
-        </div>
-    </div>
-</div>
-
+                        <div class="mt-8">
+                            <h4 class="font-semibold mb-4">Business Hours</h4>
+                            <p class="text-gray-700">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                            <p class="text-gray-700">Saturday: 10:00 AM - 4:00 PM</p>
+                            <p class="text-gray-700">Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="md:w-1/2">
-                    <div class="bg-light p-8 rounded-lg shadow-md">
+                    <div class="bg-light p-8 rounded-lg shadow-md card-3d">
                         <h3 class="text-2xl font-semibold mb-6">Send us a Message via WhatsApp</h3>
                         
                         <div class="text-center p-8">
-                            <div class="w-20 h-20 mx-auto bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
+                            <div class="w-20 h-20 mx-auto bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 floating">
                                 <i class="fab fa-whatsapp text-3xl"></i>
                             </div>
                             <p class="text-gray-700 mb-6">Click the button below to start a conversation with us on WhatsApp. We're here to answer any questions you may have.</p>
                             <a href="https://wa.me/2349043565308?text=Hello%20SkenoX%2C%20I%20have%20a%20question%20about%20Ridax%20Bedbug%20Spray" 
                                target="_blank" 
-                               class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center justify-center">
+                               class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center justify-center glow transition-all duration-300 transform hover:scale-105">
                                 <i class="fab fa-whatsapp mr-2 text-xl"></i> Message Us on WhatsApp
                             </a>
                         </div>
@@ -577,7 +894,7 @@
     <!-- Map Section -->
     <section class="py-8 bg-white">
         <div class="container mx-auto px-4">
-            <div class="bg-light p-8 rounded-lg shadow-md">
+            <div class="bg-light p-8 rounded-lg shadow-md card-3d">
                 <h3 class="text-2xl font-semibold mb-6 text-center">Our Location</h3>
                 <div class="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
                     <div class="text-center text-gray-600">
@@ -596,7 +913,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <div class="flex items-center">
-                        <i class="fas fa-bug text-3xl text-secondary mr-2"></i>
+                        <i class="fas fa-bug text-3xl text-secondary mr-2 animate-pulse-slow"></i>
                         <span class="text-2xl font-bold">SkenoX shop</span>
                     </div>
                     <p class="mt-2 text-green-100">The perfect solution for bedbug problems</p>
@@ -616,33 +933,84 @@
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/2349043565308?text=Hello%20SkenoX%2C%20I%20want%20to%20order%20Ridax%20(Bed%20Bug%20Treatment)%20spray" 
        target="_blank" 
-       class="fixed bottom-5 right-5 bg-[#25D366] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg z-50">
+       class="fixed bottom-5 right-5 bg-[#25D366] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg z-50 glow floating">
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
-<!-- Scroll to Top Button -->
-<button id="scrollTopBtn" 
-        class="hidden fixed bottom-24 right-5 bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-50 hover:bg-blue-700">
-    <i class="fas fa-arrow-up text-lg"></i>
-</button>
-
-<script>
-// Scroll-to-top button logic
-const scrollTopBtn = document.getElementById("scrollTopBtn");
-
-window.onscroll = function () {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        scrollTopBtn.classList.remove("hidden");
-    } else {
-        scrollTopBtn.classList.add("hidden");
-    }
-};
-
-scrollTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
-</script>
+    
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" 
+            class="hidden fixed bottom-24 right-5 bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-50 hover:bg-blue-700 transition-all duration-300 transform hover:scale-110">
+        <i class="fas fa-arrow-up text-lg"></i>
+    </button>
 
     <script>
+        // Professional Preloader Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const progressBar = document.getElementById('progress-bar');
+            const percentage = document.getElementById('percentage');
+            const loadingMessage = document.getElementById('loading-message');
+            
+            let progress = 0;
+            const messages = [
+                "Preparing your experience...",
+                "Loading product information...",
+                "Setting up secure connection...",
+                "Almost ready..."
+            ];
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Update progress bar and percentage
+                    progressBar.style.width = progress + '%';
+                    percentage.textContent = Math.round(progress) + '%';
+                    loadingMessage.textContent = "Ready!";
+                    
+                    // Hide preloader after a short delay
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                            // Show the header after loading
+                            document.getElementById('main-header').classList.remove('hidden');
+                        }, 800);
+                    }, 500);
+                } else {
+                    // Update progress bar and percentage
+                    progressBar.style.width = progress + '%';
+                    percentage.textContent = Math.round(progress) + '%';
+                    
+                    // Change message at certain intervals
+                    if (progress > 25 && progress < 30) {
+                        loadingMessage.textContent = messages[1];
+                    } else if (progress > 50 && progress < 55) {
+                        loadingMessage.textContent = messages[2];
+                    } else if (progress > 75 && progress < 80) {
+                        loadingMessage.textContent = messages[3];
+                    }
+                }
+            }, 200);
+        });
+
+        // Scroll-to-top button logic
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+        window.onscroll = function () {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollTopBtn.classList.remove("hidden");
+            } else {
+                scrollTopBtn.classList.add("hidden");
+            }
+        };
+
+        scrollTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
         // Mobile menu toggle
         document.getElementById('menu-btn').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
@@ -855,6 +1223,194 @@ scrollTopBtn.addEventListener("click", () => {
             });
             selectedPackage = null;
             selectedPackageDisplay.innerHTML = '<p class="text-center text-gray-600">Please select a package from the options above</p>';
+        });
+
+        // Animated counter for stats
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const step = target / (duration / 16); // 60fps
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+        
+        // Initialize GSAP animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate elements on scroll
+        gsap.utils.toArray('.feature-card, .pricing-option, .card-3d').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+        
+        // Animate stats counter when in view
+        gsap.utils.toArray('.stat-item').forEach(element => {
+            ScrollTrigger.create({
+                trigger: element,
+                start: "top 80%",
+                onEnter: () => {
+                    const counter = element.querySelector('.counter');
+                    animateCounter(counter);
+                }
+            });
+        });
+        
+        // Stagger animation for product features
+        gsap.utils.toArray('.stagger-item').forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: '.stagger-list',
+                    start: "top 70%",
+                    end: "bottom 30%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 20,
+                duration: 0.5,
+                delay: i * 0.1
+            });
+        });
+        
+        // Parallax effect for hero section
+        gsap.to('.hero-slide', {
+            yPercent: -20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#home",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+        
+        // Header animation on scroll
+        gsap.to('header', {
+            backgroundColor: "rgba(255, 255, 255, 0.95)",
+            backdropFilter: "blur(10px)",
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: "body",
+                start: "50px top",
+                end: "bottom top",
+                toggleActions: "play reverse play reverse"
+            }
+        });
+    </script>
+    
+    <!-- Particles.js for background animation -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: {
+                            value: 80,
+                            density: {
+                                enable: true,
+                                value_area: 800
+                            }
+                        },
+                        color: {
+                            value: "#2A6B37"
+                        },
+                        shape: {
+                            type: "circle",
+                            stroke: {
+                                width: 0,
+                                color: "#000000"
+                            }
+                        },
+                        opacity: {
+                            value: 0.5,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 1,
+                                opacity_min: 0.1,
+                                sync: false
+                            }
+                        },
+                        size: {
+                            value: 3,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 2,
+                                size_min: 0.1,
+                                sync: false
+                            }
+                        },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: "#2A6B37",
+                            opacity: 0.4,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 1,
+                            direction: "none",
+                            random: true,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false,
+                            attract: {
+                                enable: false,
+                                rotateX: 600,
+                                rotateY: 1200
+                            }
+                        }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: {
+                                enable: true,
+                                mode: "grab"
+                            },
+                            onclick: {
+                                enable: true,
+                                mode: "push"
+                            },
+                            resize: true
+                        },
+                        modes: {
+                            grab: {
+                                distance: 140,
+                                line_linked: {
+                                    opacity: 1
+                                }
+                            },
+                            push: {
+                                particles_nb: 4
+                            }
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
         });
     </script>
 </body>
